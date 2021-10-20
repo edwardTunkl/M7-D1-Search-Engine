@@ -57,7 +57,7 @@ const Home = ({ search, searchBy, history, addFavourite }) => {
                 <th style={{ width: "6rem" }}>Publication Date</th>
                 <th>Required Location</th>
                 <th style={{ width: "9rem" }}>Salary</th>
-                <th style={{ width: "2rem" }}>Add</th>
+                <th style={{ width: "2rem" }} onClick={() => history.push(`/favourites`)}>Favourites</th>
               </tr>
             </thead>
             <tbody>
@@ -75,7 +75,7 @@ const Home = ({ search, searchBy, history, addFavourite }) => {
                     </td>
                     <td>{j.candidate_required_location} </td>
                     <td>{j.salary} </td>
-                    <td onClick={() => addFavourite(j.company_name)}><FcOk/></td>
+                    <td onClick={() => addFavourite(j)}><FcOk style={{fontSize:"2rem"}} /></td>
                   </tr>
                 ))
               ) : (

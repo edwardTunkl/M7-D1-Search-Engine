@@ -9,9 +9,11 @@ import {
 } from "react-bootstrap";
 import React from "react";
 import { useState, useEffect } from "react";
+import { withRouter } from "react-router";
+
 import "../search.css";
 
-const Searchbar = ({onChange, changeSearch}) => {
+const Searchbar = ({onChange, changeSearch, history}) => {
 
 const [search, setSearch] = useState([])
 console.log("SEARCH", search)
@@ -40,7 +42,7 @@ console.log("SEARCH", search)
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/" className="text-danger">Home</Nav.Link>
-            <Nav.Link href="#link" className="text-danger">Favourites</Nav.Link>
+            <Nav.Link className="text-danger" onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
             <NavDropdown title="Select Search" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => changeSearch("Title")} > 
               Title
@@ -73,4 +75,4 @@ console.log("SEARCH", search)
       
   );
 };
-export default Searchbar;
+export default withRouter(Searchbar);
