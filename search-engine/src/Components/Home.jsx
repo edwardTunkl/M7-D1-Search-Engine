@@ -2,9 +2,24 @@ import { useState, useEffect } from "react";
 import "../home.css";
 import { Container, Table } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
-const Home = ({ search, searchBy, history }) => {
+import { FcOk } from "react-icons/fc";
+import { addFavouriteAction } from "../actions";
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => ({})
+const mapDispatchToProps = (dispatch) => ({
+  addFavourite: (company) => {
+    dispatch(addFavouriteAction(company))
+  }
+})
+
+
+const Home = ({ search, searchBy, history, addFavourite }) => {
+
+  const [company, setCompany] = useState([])
   const [jobs, setJobs] = useState([]);
   console.log("This is state Jobs", jobs.data);
+
 
   useEffect(() => {
     fetchJobs();
@@ -42,6 +57,7 @@ const Home = ({ search, searchBy, history }) => {
                 <th style={{ width: "6rem" }}>Publication Date</th>
                 <th>Required Location</th>
                 <th style={{ width: "9rem" }}>Salary</th>
+                <th style={{ width: "2rem" }}>Add</th>
               </tr>
             </thead>
             <tbody>
@@ -59,6 +75,7 @@ const Home = ({ search, searchBy, history }) => {
                     </td>
                     <td>{j.candidate_required_location} </td>
                     <td>{j.salary} </td>
+                    <td onClick={() => addFavourite(j.company_name)}><FcOk/></td>
                   </tr>
                 ))
               ) : (
@@ -71,4 +88,4 @@ const Home = ({ search, searchBy, history }) => {
     </>
   );
 };
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
