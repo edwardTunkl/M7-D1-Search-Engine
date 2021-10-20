@@ -13,11 +13,11 @@ const Home = ({ search, searchBy, history }) => {
   const fetchJobs = async () => {
     try {
       let response = await fetch(
-        `https://strive-jobs-api.herokuapp.com/jobs?${searchBy.toLowerCase()}=${search.toLowerCase()}`
+        `https://strive-jobs-api.herokuapp.com/jobs?${searchBy.toLowerCase()}=${search.toLowerCase()} `
       );
       if (response.ok) {
         let data = await response.json();
-        console.log("THIS IS DATA", data);
+        console.log("THIS IS COMPANY", data);
         setJobs(data);
       } else {
       }

@@ -35,11 +35,11 @@ console.log("SEARCH", search)
     
     <Navbar bg="info" expand="lg">
       <Container>
-        <Navbar.Brand href="#home" className="text-danger">Search-Engine</Navbar.Brand>
+        <Navbar.Brand href="#home" className="text-danger engine-name" >Search-Engine</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home" className="text-danger">Home</Nav.Link>
+            <Nav.Link href="/" className="text-danger">Home</Nav.Link>
             <Nav.Link href="#link" className="text-danger">Company</Nav.Link>
             <NavDropdown title="Select Search" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => changeSearch("Title")} > 

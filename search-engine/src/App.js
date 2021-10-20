@@ -26,7 +26,7 @@ return(
     <Searchbar onChange={onChange} changeSearch={changeSearch} />
     <Container>
     <Route path="/" exact render={(routerProps) => <Home {...routerProps} search={search} searchBy={searchBy} />} />
-    <Route path="/company" exact render={(routerProps) => <Company {...routerProps} />} />
+    <Route path="/company/:id" exact render={(routerProps) => <Company {...routerProps} />} />
     </Container>
     </div>
   </Router>
