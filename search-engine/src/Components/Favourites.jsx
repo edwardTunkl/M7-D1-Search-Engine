@@ -19,7 +19,7 @@ const Favourites = ({companies, history}) => {
   return (
     <>
       <Container>
-        <h3 className="mt-3 mb-3">Favourite Companies</h3>
+        <h4 className="mt-4 mb-3">Favourite Companies</h4>
          <div className="table">
           <Table striped bordered hover>
             <thead>
@@ -34,7 +34,7 @@ const Favourites = ({companies, history}) => {
                 <th style={{ width: "9rem" }}>Salary</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="table-text">
               {companies ? (
                 companies.slice(0, 50).map((j, index) => (
                   <tr key={j._id}>

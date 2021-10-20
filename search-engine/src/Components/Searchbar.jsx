@@ -36,12 +36,12 @@ console.log("SEARCH", search)
   return (
     
     <Navbar bg="info" expand="lg">
-      <Container>
+      <Container className="px-4">
         <Navbar.Brand href="#home" className="text-danger engine-name" >Search-Engine</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/" className="text-danger">Home</Nav.Link>
+            <Nav.Link className="text-danger" onClick={() => history.push(`/`)}>Home</Nav.Link>
             <Nav.Link className="text-danger" onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
             <NavDropdown title="Select Search" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => changeSearch("Title")} > 

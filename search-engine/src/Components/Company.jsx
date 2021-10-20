@@ -29,7 +29,7 @@ const Company = ({ search, searchBy, history , match}) => {
   return (
     <>
       <Container>
-        <h3 className="mt-3 mb-3">Job Listings</h3>
+        <h4 className="mt-4 mb-3">Job Listings</h4>
          <div className="table">
           <Table striped bordered hover>
             <thead>
@@ -44,7 +44,7 @@ const Company = ({ search, searchBy, history , match}) => {
                 <th style={{ width: "9rem" }}>Salary</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="table-text">
               {company.data ? (
                 company.data.slice(0, 50).map((j, index) => (
                   <tr key={j._id}>
