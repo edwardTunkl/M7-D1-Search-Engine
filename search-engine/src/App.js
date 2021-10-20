@@ -10,20 +10,25 @@ import { useState } from "react";
 const App = () => {
 
 const [search, setSearch] = useState({})
+const [searchBy, setSearchBy] = useState("")
+console.log("SearchBY", searchBy)
 
 const onChange = (query) => {
-  setSearch({ query });
+  setSearch(query);
 };
-
+const changeSearch = (query) => {
+  setSearchBy(query)
+}
 
 return(
   <Router>
+    <div className="vh-100 background">
+    <Searchbar onChange={onChange} changeSearch={changeSearch} />
     <Container>
-    <Searchbar onChange={onChange}/>
-    <Route path="/" exact render={(routerProps) => <Home {...routerProps} search={search} />} />
+    <Route path="/" exact render={(routerProps) => <Home {...routerProps} search={search} searchBy={searchBy} />} />
     <Route path="/company" exact render={(routerProps) => <Company {...routerProps} />} />
-
     </Container>
+    </div>
   </Router>
 
 )}

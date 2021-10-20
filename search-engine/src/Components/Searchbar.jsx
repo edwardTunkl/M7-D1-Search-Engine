@@ -8,28 +8,48 @@ import {
   Container,
 } from "react-bootstrap";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../search.css";
 
-const Searchbar = ({onChange}) => {
+const Searchbar = ({onChange, changeSearch}) => {
+
+const [search, setSearch] = useState([])
+console.log("SEARCH", search)
+
+// useEffect(() => {
+//  fetchCategories()
+// }, [])
+
+// const fetchCategories = async () => {
+//   try {
+//     let resp = await fetch("https://strive-jobs-api.herokuapp.com/jobs/categories")
+//     let cat = await resp.json()
+//     setCategory(cat)
+//     console.log("CATEGORIES",cat)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
   return (
-    <Container>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Search-Engine</Navbar.Brand>
+    
+    <Navbar bg="info" expand="lg">
+      <Container>
+        <Navbar.Brand href="#home" className="text-danger">Search-Engine</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Company</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+            <Nav.Link href="#home" className="text-danger">Home</Nav.Link>
+            <Nav.Link href="#link" className="text-danger">Company</Nav.Link>
+            <NavDropdown title="Select Search" id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={() => changeSearch("Title")} > 
+              Title
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item onClick={() => changeSearch("Category")} > 
+              Category
+              </NavDropdown.Item>
+              <NavDropdown.Item onClick={() => changeSearch("Company")} > 
+              Company
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -45,11 +65,12 @@ const Searchbar = ({onChange}) => {
                 }
               }}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-danger">Search</Button>
           </Form>
         </Navbar.Collapse>
+        </Container>
       </Navbar>
-    </Container>
+      
   );
 };
 export default Searchbar;
