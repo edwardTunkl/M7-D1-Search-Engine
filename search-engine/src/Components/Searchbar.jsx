@@ -40,7 +40,7 @@ console.log("SEARCH", search)
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/" className="text-danger">Home</Nav.Link>
-            <Nav.Link href="#link" className="text-danger">Company</Nav.Link>
+            <Nav.Link href="#link" className="text-danger">Favourites</Nav.Link>
             <NavDropdown title="Select Search" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => changeSearch("Title")} > 
               Title
