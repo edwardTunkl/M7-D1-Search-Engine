@@ -9,3 +9,6 @@
 .table-text{
   font-weight: 500;
 }
+.shaddow {
+  text-shadow: 1px 1px #ffffff;
+ }

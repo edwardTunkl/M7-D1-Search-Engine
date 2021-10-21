@@ -1,18 +1,34 @@
-import { createStore } from 'redux'
-import mainReducer from '../reducers'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import favouritesReducer from '../reducers/favourites'
+import jobsReducer from '../reducers/jobs'
+import thunk from 'redux-thunk'
 
-// 1)
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+
 export const initialState = {
   favourites: {
     companies: [],
+  },
+  jobs: {
+    jobResults:[],
+    isError: false,
+    isLoading: false,
   }
 }
 
+const totalReducer = combineReducers({
+
+  favourites: favouritesReducer,
+  jobs: jobsReducer
+})
 // 2)
 const configureStore = createStore(
-  mainReducer,
+  totalReducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk))
 )
 
 export default configureStore

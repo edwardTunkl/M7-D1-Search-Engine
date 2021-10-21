@@ -51,7 +51,7 @@ const Home = ({ search, searchBy, history, addFavourite }) => {
   return (
     <>
       <Container>
-        <h4 className="mt-4 mb-3 text-dark">Job Listings</h4>
+        <h4 className="mt-4 mb-3 text-dark shaddow">Job Listings</h4>
         <div className="table">
           <Table striped bordered hover>
             <thead>

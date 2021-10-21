@@ -10,14 +10,17 @@ import {
 import React from "react";
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
-
 import "../search.css";
 
 const Searchbar = ({onChange, changeSearch, history}) => {
 
-const [search, setSearch] = useState([])
+const [search, setSearch] = useState("")
 console.log("SEARCH", search)
 
+const handleSubmit = (event) => {
+  event.preventDefault();
+  onChange()
+}
 // useEffect(() => {
 //  fetchCategories()
 // }, [])
@@ -41,9 +44,9 @@ console.log("SEARCH", search)
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="text-warning" onClick={() => history.push(`/`)}>Home</Nav.Link>
-            <Nav.Link className="text-warning" onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
-            <NavDropdown title="Select Search" id="basic-nav-dropdown droppy" className="ml-100">
+            <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/`)}>Home</Nav.Link>
+            <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
+            <NavDropdown title="Select Search" id="basic-nav-dropdown" style={{fontSize:"1.5rem"},{marginLeft:"21rem"}}>
               <NavDropdown.Item onClick={() => changeSearch("Title")} > 
               Title
               </NavDropdown.Item>
@@ -67,7 +70,6 @@ console.log("SEARCH", search)
                 }
               }}
             />
-            <Button variant="outline-danger">Search</Button>
           </Form>
         </Navbar.Collapse>
         </Container>

@@ -27,7 +27,7 @@ const Favourites = ({companies, removeFavourite, history}) => {
   return (
     <>
       <Container>
-        <h4 className="mt-4 mb-3 text-dark">Favourite Companies</h4>
+        <h4 className="mt-4 mb-3 text-dark shaddow">Favourite Companies</h4>
          <div className="table">
           <Table striped bordered hover>
             <thead>
