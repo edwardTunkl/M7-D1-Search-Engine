@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../home.css";
 import { Container, Table } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
-import { FcOk } from "react-icons/fc";
+import { FcPlus } from "react-icons/fc";
 import { addFavouriteAction } from "../actions";
 import { connect } from 'react-redux'
 
@@ -85,7 +85,7 @@ const Home = ({ search, searchBy, history, addFavourite }) => {
                     <td onClick={() => {
                       addFavourite(j)
                       handleRemove(j._id)
-                      }}><FcOk className="favourites-icon"/></td>
+                      }}><FcPlus className="favourites-icon"/></td>
                   </tr>
                 ))
               ) : (

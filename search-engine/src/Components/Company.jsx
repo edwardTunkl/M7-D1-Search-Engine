@@ -67,6 +67,14 @@ const Company = ({ search, searchBy, history , match}) => {
             </tbody>
           </Table>
         </div> 
+        {/* <div>
+        {company.data ? (
+       company.data.slice(0, 50).map((c) =>(
+         <html>{c.description} </html>
+       ))) : (
+        <div></div>
+       )}
+       </div> */}
       </Container>
     </>
   );

@@ -3,13 +3,21 @@ import "../home.css";
 import { Container, Table } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
 import { connect } from 'react-redux'
+import { FcCancel } from "react-icons/fc";
+import { removeFavouriteAction } from "../actions";
+
 
 const mapStateToProps = (state) => ({
   companies: state.favourites.companies,
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  removeFavourite: (index) => {
+    dispatch(removeFavouriteAction(index))
+  }
+})
 
-const Favourites = ({companies, history}) => {
+const Favourites = ({companies, removeFavourite, history}) => {
 
   useEffect(() => {
    
@@ -48,7 +56,10 @@ const Favourites = ({companies, history}) => {
                       {format(parseISO(j.publication_date), "MMM yyyy")}{" "}
                     </td>
                     <td>{j.candidate_required_location} </td>
-                    <td>{j.salary} </td>
+                    <td onClick={() => {
+                      removeFavourite(index)
+                      }}
+                      > <FcCancel className="favourites-icon"/></td>
                   </tr>
                 ))
               ) : (
@@ -61,4 +72,4 @@ const Favourites = ({companies, history}) => {
     </>
   );
 };
-export default connect(mapStateToProps)(Favourites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favourites);
