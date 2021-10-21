@@ -1,3 +1,13 @@
-.engine-name {
+#engine-name {
+  color: rgb(196, 140, 207);
   font-size: 2rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+#engine-text{
+  color: rgb(196, 140, 207);
+  font-size: 2rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+#droppy {
+margin-left: 30px;
 }

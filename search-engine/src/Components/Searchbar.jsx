@@ -37,13 +37,13 @@ console.log("SEARCH", search)
     
     <Navbar bg="info" expand="lg">
       <Container className="px-4">
-        <Navbar.Brand href="#home" className="text-danger engine-name" >Search-Engine</Navbar.Brand>
+        <Navbar.Brand id="engine-name">Search-Engine</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="text-danger" onClick={() => history.push(`/`)}>Home</Nav.Link>
-            <Nav.Link className="text-danger" onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
-            <NavDropdown title="Select Search" id="basic-nav-dropdown">
+            <Nav.Link className="text-warning" onClick={() => history.push(`/`)}>Home</Nav.Link>
+            <Nav.Link className="text-warning" onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
+            <NavDropdown title="Select Search" id="basic-nav-dropdown droppy" className="ml-100">
               <NavDropdown.Item onClick={() => changeSearch("Title")} > 
               Title
               </NavDropdown.Item>
