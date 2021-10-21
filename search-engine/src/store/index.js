@@ -20,7 +20,6 @@ export const initialState = {
 }
 
 const totalReducer = combineReducers({
-
   favourites: favouritesReducer,
   jobs: jobsReducer
 })
