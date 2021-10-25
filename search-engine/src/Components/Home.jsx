@@ -4,37 +4,18 @@ import { Container, Table, Spinner, Alert } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
 import { FcPlus, FcAcceptDatabase } from "react-icons/fc";
 import { addFavouriteAction, getJobsAction } from "../actions";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux'
 
-const mapStateToProps = (state) => ({
-  jobs: state.jobs.jobResults,
-  isError: state.jobs.isError,
-  isLoading: state.jobs.isLoading,
-  query: state.search.query,
-  searchBy: state.search.searchBy
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  addFavourite: (company) => {
-    dispatch(addFavouriteAction(company));
-  },
-  getJobs: () => {
-    dispatch(getJobsAction());
-  },
-});
+const Home = ({ history }) => {
+ 
+  const jobs = useSelector(state => state.jobs.jobResults)
+  const isError = useSelector(state => state.jobs.isError)
+  const isLoading = useSelector(state => state.jobs.isLoading)
+  const query = useSelector(state => state.search.query)
+  const searchBy = useSelector(state => state.search.searchBy)
 
-const Home = ({
-  jobs,
-  query,
-  searchBy,
-  history,
-  addFavourite,
-  getJobs,
-  isError,
-  isLoading,
-}) => {
-  // const [jobs, setJobs] = useState([]);
-   console.log("This is state Jobs", jobs);
+  const dispatch = useDispatch()
 
   // function handleRemove(id) {
   //   let newJobs = jobs.filter((item) => item._id !== id);
@@ -42,8 +23,10 @@ const Home = ({
   //   console.log("NEW JOBS", newJobs);
   // }
 
+
+
   useEffect(() => {
-    getJobs();
+    dispatch(getJobsAction());
   }, [query, searchBy]);
  console.log("QUERY", query)
  console.log("SEARCH BY", searchBy)
@@ -118,7 +101,7 @@ const Home = ({
                     <td
                       className="text-center align-middle"
                       onClick={() => {
-                        addFavourite(j);
+                        dispatch(addFavouriteAction(j));
                         console.log("THIS IS ADDED", j)
                         // handleRemove(j._id);
                       }}
@@ -136,4 +119,4 @@ const Home = ({
     </>
   );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
