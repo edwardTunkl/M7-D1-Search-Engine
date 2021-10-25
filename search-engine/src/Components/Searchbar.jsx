@@ -12,23 +12,25 @@ import { withRouter } from "react-router";
 import "../search.css";
 import { setQueryAction, setSearchByAction } from "../actions";
 import {  useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 
-const Searchbar = ({ history }) => {
+const Searchbar = () => {
 
  const dispatch = useDispatch()
+ const history = useHistory()
 
   return (
     
     <Navbar bg="info" expand="lg">
       <Container className="px-4">
-        <Navbar.Brand id="engine-name">Search-Engine</Navbar.Brand>
+        <Navbar.Brand id="engine-name"><span className="title">80`s</span> Search-Engine</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/`)}>Home</Nav.Link>
             <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
-            <NavDropdown title="Select Search" id="basic-nav-dropdown" style={{fontSize:"1.5rem"},{marginLeft:"21rem"}}>
+            <NavDropdown title="Select Search" id="basic-nav-dropdown" style={{fontSize:"1.5rem"},{marginLeft:"15rem"}}>
               <NavDropdown.Item onClick={() => dispatch(setSearchByAction("Title"))} > 
               Title
               </NavDropdown.Item>

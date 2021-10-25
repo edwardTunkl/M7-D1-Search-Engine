@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 import "../home.css";
 import { Container, Table, Spinner, Alert } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
@@ -7,7 +8,7 @@ import { addFavouriteAction, getJobsAction } from "../actions";
 import { useSelector, useDispatch } from 'react-redux'
 
 
-const Home = ({ history }) => {
+const Home = () => {
  
   const jobs = useSelector(state => state.jobs.jobResults)
   const isError = useSelector(state => state.jobs.isError)
@@ -16,6 +17,8 @@ const Home = ({ history }) => {
   const searchBy = useSelector(state => state.search.searchBy)
 
   const dispatch = useDispatch()
+
+  const history = useHistory()
 
   // function handleRemove(id) {
   //   let newJobs = jobs.filter((item) => item._id !== id);

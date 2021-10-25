@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import "../home.css";
 import { Container, Table } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
+
+
 const Company = ({ search, searchBy, history , match}) => {
+
   const [company, setCompany] = useState([]);
   console.log("COMPANY STATE", company);
 
@@ -67,14 +70,6 @@ const Company = ({ search, searchBy, history , match}) => {
             </tbody>
           </Table>
         </div> 
-        {/* <div>
-        {company.data ? (
-       company.data.slice(0, 50).map((c) =>(
-         <html>{c.description} </html>
-       ))) : (
-        <div></div>
-       )}
-       </div> */}
       </Container>
     </>
   );

@@ -1,29 +1,19 @@
-import { useState, useEffect } from "react";
 import "../home.css";
 import { Container, Table } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { FcCancel, FcDeleteDatabase } from "react-icons/fc";
 import { removeFavouriteAction } from "../actions";
+import { useHistory } from "react-router-dom";
 
 
-const mapStateToProps = (state) => ({
-  companies: state.favourites.companies,
-})
+const Favourites = () => {
 
-const mapDispatchToProps = (dispatch) => ({
-  removeFavourite: (index) => {
-    dispatch(removeFavouriteAction(index))
-  }
-})
+  const companies = useSelector(state => state.favourites.companies)
 
-const Favourites = ({companies, removeFavourite, history}) => {
-
-  useEffect(() => {
-   
-  }, []);
-
+  const dispatch = useDispatch()
  
+  const history = useHistory()
   return (
     <>
       <Container className="vh-100">
@@ -57,7 +47,7 @@ const Favourites = ({companies, removeFavourite, history}) => {
                     </td>
                     <td className="text-center align-middle">{j.candidate_required_location} </td>
                     <td className="text-center align-middle" onClick={() => {
-                      removeFavourite(index)
+                      dispatch(removeFavouriteAction(index))
                       }}
                       > <FcCancel className="favourites-icon"/></td>
                   </tr>
@@ -72,4 +62,4 @@ const Favourites = ({companies, removeFavourite, history}) => {
     </>
   );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Favourites);
+export default Favourites;
