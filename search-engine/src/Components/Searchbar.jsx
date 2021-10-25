@@ -8,25 +8,15 @@ import {
   Container,
 } from "react-bootstrap";
 import React from "react";
-import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import "../search.css";
-import { connect } from "react-redux";
 import { setQueryAction, setSearchByAction } from "../actions";
+import {  useDispatch } from 'react-redux'
 
-const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  setQuery: (query) => {
-    dispatch(setQueryAction(query));
-  },
-  setSearchBy: (searchBy ) => {
-    dispatch(setSearchByAction(searchBy));
-  },
-});
+const Searchbar = ({ history }) => {
 
-const Searchbar = ({setQuery, setSearchBy, history}) => {
-
+ const dispatch = useDispatch()
 
   return (
     
@@ -39,13 +29,13 @@ const Searchbar = ({setQuery, setSearchBy, history}) => {
             <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/`)}>Home</Nav.Link>
             <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
             <NavDropdown title="Select Search" id="basic-nav-dropdown" style={{fontSize:"1.5rem"},{marginLeft:"21rem"}}>
-              <NavDropdown.Item onClick={() => setSearchBy("Title")} > 
+              <NavDropdown.Item onClick={() => dispatch(setSearchByAction("Title"))} > 
               Title
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => setSearchBy("Category")} > 
+              <NavDropdown.Item onClick={() => dispatch(setSearchByAction("Category"))} > 
               Category
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => setSearchBy("Company")} > 
+              <NavDropdown.Item onClick={() => dispatch(setSearchByAction("Company"))} > 
               Company
               </NavDropdown.Item>
             </NavDropdown>
@@ -58,7 +48,7 @@ const Searchbar = ({setQuery, setSearchBy, history}) => {
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
-                  setQuery(e.target.value);
+                  dispatch(setQueryAction(e.target.value));
                 }
               }}
             />
@@ -69,4 +59,4 @@ const Searchbar = ({setQuery, setSearchBy, history}) => {
       
   );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Searchbar));
+export default withRouter(Searchbar)
