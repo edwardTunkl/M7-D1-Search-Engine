@@ -28,7 +28,7 @@ const Company = ({ search, searchBy, history , match}) => {
 
   return (
     <>
-      <Container>
+      <Container className="vh-100">
         <h4 className="mt-4 mb-3 shaddow">Company Details</h4>
          <div className="table">
           <Table striped bordered hover>

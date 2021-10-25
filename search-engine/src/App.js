@@ -6,27 +6,15 @@ import Searchbar from "./Components/Searchbar";
 import Home from "./Components/Home"
 import Company from "./Components/Company"
 import Favourites from "./Components/Favourites"
-import { useState } from "react";
 
 const App = () => {
 
-const [search, setSearch] = useState({})
-const [searchBy, setSearchBy] = useState("")
-console.log("SearchBY", searchBy)
-
-const onChange = (query) => {
-  setSearch(query);
-};
-const changeSearch = (query) => {
-  setSearchBy(query)
-}
-
 return(
   <Router>
-    <div className="vh-100 background">
-    <Searchbar onChange={onChange} changeSearch={changeSearch} />
+    <div className=" background ">
+    <Searchbar />
     <Container>
-    <Route path="/" exact render={(routerProps) => <Home {...routerProps} search={search} searchBy={searchBy} />} />
+    <Route path="/" exact render={(routerProps) => <Home {...routerProps}/>} />
     <Route path="/company/:id" exact render={(routerProps) => <Company {...routerProps} />} />
     <Route path="/favourites" exact render={(routerProps) => <Favourites {...routerProps} />} />
     </Container>

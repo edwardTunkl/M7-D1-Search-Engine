@@ -10,6 +10,8 @@ const mapStateToProps = (state) => ({
   jobs: state.jobs.jobResults,
   isError: state.jobs.isError,
   isLoading: state.jobs.isLoading,
+  query: state.search.query,
+  searchBy: state.search.searchBy
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -23,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Home = ({
   jobs,
-  search,
+  query,
   searchBy,
   history,
   addFavourite,
@@ -42,27 +44,9 @@ const Home = ({
 
   useEffect(() => {
     getJobs();
-  }, []);
-
-  // useEffect(() => {
-  //   fetchJobs();
-  // }, [search]);
-
-  // const fetchJobs = async () => {
-  //   try {
-  //     let response = await fetch(
-  //       `https://strive-jobs-api.herokuapp.com/jobs?${searchBy.toLowerCase()}=${search.toLowerCase()} `
-  //     );
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       console.log("THIS IS COMPANY", data);
-  //       setJobs(data.data);
-  //     } else {
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  }, [query, searchBy]);
+ console.log("QUERY", query)
+ console.log("SEARCH BY", searchBy)
 
   return (
     <>

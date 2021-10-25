@@ -11,30 +11,22 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import "../search.css";
+import { connect } from "react-redux";
+import { setQueryAction, setSearchByAction } from "../actions";
 
-const Searchbar = ({onChange, changeSearch, history}) => {
+const mapStateToProps = (state) => ({});
 
-const [search, setSearch] = useState("")
-console.log("SEARCH", search)
+const mapDispatchToProps = (dispatch) => ({
+  setQuery: (query) => {
+    dispatch(setQueryAction(query));
+  },
+  setSearchBy: (searchBy ) => {
+    dispatch(setSearchByAction(searchBy));
+  },
+});
 
-const handleSubmit = (event) => {
-  event.preventDefault();
-  onChange()
-}
-// useEffect(() => {
-//  fetchCategories()
-// }, [])
+const Searchbar = ({setQuery, setSearchBy, history}) => {
 
-// const fetchCategories = async () => {
-//   try {
-//     let resp = await fetch("https://strive-jobs-api.herokuapp.com/jobs/categories")
-//     let cat = await resp.json()
-//     setCategory(cat)
-//     console.log("CATEGORIES",cat)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
 
   return (
     
@@ -47,13 +39,13 @@ const handleSubmit = (event) => {
             <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/`)}>Home</Nav.Link>
             <Nav.Link className="text-warning shaddow" style={{fontSize:"1.3rem"}} onClick={() => history.push(`/favourites`)}>Favourites</Nav.Link>
             <NavDropdown title="Select Search" id="basic-nav-dropdown" style={{fontSize:"1.5rem"},{marginLeft:"21rem"}}>
-              <NavDropdown.Item onClick={() => changeSearch("Title")} > 
+              <NavDropdown.Item onClick={() => setSearchBy("Title")} > 
               Title
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => changeSearch("Category")} > 
+              <NavDropdown.Item onClick={() => setSearchBy("Category")} > 
               Category
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => changeSearch("Company")} > 
+              <NavDropdown.Item onClick={() => setSearchBy("Company")} > 
               Company
               </NavDropdown.Item>
             </NavDropdown>
@@ -66,7 +58,7 @@ const handleSubmit = (event) => {
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
-                  onChange(e.target.value);
+                  setQuery(e.target.value);
                 }
               }}
             />
@@ -77,4 +69,4 @@ const handleSubmit = (event) => {
       
   );
 };
-export default withRouter(Searchbar);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Searchbar));

@@ -3,6 +3,9 @@ export const REMOVE_FAVOURITE_COMPANY = "REMOVE_FAVOURITE_COMPANY";
 export const GET_JOBS = "GET_JOBS";
 export const GET_JOBS_ERROR = 'GET_JOBS_ERROR'
 export const GET_JOBS_LOADING = 'GET_JOBS_LOADING'
+export const SET_SEARCH = 'SET_SEARCH'
+export const SET_SEARCH_BY = 'SET_SEARCH_BY'
+
 
 export const addFavouriteAction = (company) => ({
   type: ADD_FAVOURITE_COMPANY,
@@ -14,17 +17,19 @@ export const removeFavouriteAction = (index) => ({
   payload: index,
 });
 
-export const getJobsAction = () => {
+export const getJobsAction = (searchBy, search) => {
 
   return async (dispatch, getState) => {
+    const query = await getState()
     console.log(".....FETCHING JOBS");
+    console.log("QUERY", query)
     dispatch({
       type: GET_JOBS_LOADING,
       payload: true,
     });
     try {
       let resp = await fetch(
-        `https://strive-jobs-api.herokuapp.com/jobs?limit=100&skip=100`
+        `https://strive-jobs-api.herokuapp.com/jobs?${query.search.searchBy.toLowerCase()}=${query.search.query.toLowerCase()}`
       );
       if (resp.ok) {
         let data = await resp.json();
@@ -66,3 +71,20 @@ export const getJobsAction = () => {
     }
   };
 };
+export const setQueryAction = (value) => {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_SEARCH,
+      payload: value,
+    });
+  };
+};
+
+export const setSearchByAction = (value) => {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_SEARCH_BY,
+      payload: value
+    })
+  }
+}
